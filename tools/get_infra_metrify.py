@@ -12,3 +12,7 @@ def get_infra_metrify():
         "memory_frequency": 0.5,
         "disk_frequency": 0.5,
     }
+
+## Run the code if the file is run directly
+if __name__ == "__main__":
+    print(get_infra_metrify())
