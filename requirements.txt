@@ -5,3 +5,4 @@ strands-agents-tools
 langchain
 langchain-aws
 langgraph
+nodejs
