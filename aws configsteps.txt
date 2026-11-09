@@ -1,0 +1,53 @@
+#Tells where AWS is obtaining your cred and region
+aws configure list
+
+#Tells which AWS is profile exist on mac 
+aws configure list-profiles
+
+#Who am i authenticated as
+aws sts get-caller-identity
+
+# How to give aws cred to project
+1. Create seperate IAM user
+2. Save client Id and Secret Key
+3. Type : aws configure --profile digital-twin
+4. Give Key and Secret , region , output format
+5. Test with : aws sts get-caller-identity --profile digital-twin
+6. We have to see if the current region has Bedrock enabled or not
+check with : aws configure get region --profile digital-twin
+7. Lets check our IAM user can talk to Bedrock control panel or not
+Check: 
+aws bedrock list-foundation-models \
+  --region us-east-2 \
+  --profile digital-twin
+ 8. To get only details of FMs available
+
+ aws bedrock list-foundation-models \
+  --region us-east-2 \
+  --profile digital-twin \
+  --query "modelSummaries[].{Provider:providerName,Model:modelName,ModelId:modelId}" \
+  --output table \
+  --no-cli-pager
+
+9. To get only anthropic models
+
+aws bedrock list-foundation-models \
+  --region us-east-2 \
+  --profile digital-twin \
+  --by-provider anthropic \
+  --query "modelSummaries[].{Provider:providerName,Model:modelName,ModelId:modelId}" \
+  --output table \
+  --no-cli-pager
+
+  10. After picking the model and before running the code
+
+  Instead of 
+
+  aws sts get-caller-identity --profile digital-twin
+
+  Do this
+
+export AWS_PROFILE=digital-twin
+export AWS_DEFAULT_REGION=us-east-2
+
+aws stsg get-called-identity
