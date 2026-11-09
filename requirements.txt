@@ -1,7 +1,6 @@
 strands-agents
 boto3
 python-dotenv
-strands-agents
 strands-agents-tools
 langchain
 langchain-aws
