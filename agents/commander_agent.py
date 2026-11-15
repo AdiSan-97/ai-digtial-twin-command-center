@@ -26,7 +26,6 @@ commander_agent = Agent(
 )
 
 if __name__ == "__main__":
-    #respose= commander_agent("The checkout service is experiencing high latency investigate the current infrastructure metrics and provide a recommendation.")
-    respose= commander_agent("What is cloud.")
-    
+    respose= commander_agent("The checkout service is experiencing high latency investigate the current infrastructure metrics and provide a fix for this.")
+    print("--------------------------------")
     print(respose)
