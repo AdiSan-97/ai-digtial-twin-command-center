@@ -4,6 +4,7 @@ from strands import Agent
 from strands.models import BedrockModel
 import boto3
 import os
+from tools.get_infra_metrify import get_infra_metrify
 from dotenv import load_dotenv
 load_dotenv()
 
@@ -19,9 +20,13 @@ commander_agent = Agent(
     system_prompt="""
     You are a commander agent that is responsible for the overall direction of the AI Digital Twin Command Center.
     Your job is to help and analyze incidents and explain what should be investigated and what should be ignored.
-    For now you dont have access to any tools, but you will in the future.So keep your responses short and concise. """
+    You have access to infrastructure tool. Dont use tools when they are not relavent to the incident.
+    Use it to analyze the infrastructure metrics and help the user to investigate the incident. """,
+    tools=[get_infra_metrify]
 )
 
 if __name__ == "__main__":
-    respose= commander_agent("The checkout service is experiencing high latency what should be investigated?")
+    #respose= commander_agent("The checkout service is experiencing high latency investigate the current infrastructure metrics and provide a recommendation.")
+    respose= commander_agent("What is cloud.")
+    
     print(respose)
