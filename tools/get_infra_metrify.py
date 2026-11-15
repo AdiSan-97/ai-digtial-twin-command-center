@@ -1,4 +1,10 @@
-def get_infra_metrify():
+
+from strands import tool
+
+@tool
+def get_infra_metrify() -> dict:
+    """Get the infrastructure metrics for the current system.""" 
+    # The above decorator helps the agent to discover and use this tool.
     return {
         "cpu_usage": 0.5,
         "memory_usage": 0.5,
@@ -16,3 +22,5 @@ def get_infra_metrify():
 ## Run the code if the file is run directly
 if __name__ == "__main__":
     print(get_infra_metrify())
+
+    
